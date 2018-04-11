@@ -1,5 +1,8 @@
 require "bundler/setup"
+require "scruber"
 require "scruber/user/agents"
+require "scruber/helpers/dictionary_reader/xml"
+require "scruber/helpers/dictionary_reader/csv"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

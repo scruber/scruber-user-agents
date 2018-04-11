@@ -6,6 +6,11 @@
 /pkg/
 /spec/reports/
 /tmp/
+builder
 
 # rspec failure tracking
 .rspec_status
+.ruby-version
+.ruby-gemset
+*.gem
+todo

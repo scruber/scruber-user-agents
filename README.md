@@ -1,8 +1,6 @@
-# Scruber::User::Agents
+# Scruber UserAgents
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/scruber/user/agents`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This gem provides user agents dictionary for Scruber gem.
 
 ## Installation
 
@@ -16,13 +14,63 @@ And then execute:
 
     $ bundle
 
-Or install it yourself as:
+Then install it with following command:
+    
+    $ scruber generate user_agents:install
 
-    $ gem install scruber-user-agents
+Then edit your config/initializers/user_agents.rb manually to load user agents:
+
+    Scruber::Helpers::UserAgentRotator.configure do
+      clean
+      set_filter :all
+
+      # How to access proxy_list dictionary
+      # 
+      loop :user_agents do |ua|
+        add ua['name'], tags: ua['tags'].split(',').map(&:strip)
+      end
+    end
 
 ## Usage
 
-TODO: Write usage instructions here
+Fetcher will rotate User Agents automatically based on your filter in config/initializers/user_agents.rb
+Possible filters:
+
+```ruby
+set_filter :all # If you want to rotate all user agents
+set_filter :chrome # if you want to rotate only chrome User Agents
+set_filter [:chrome, :linux] # if you want to rotate only Chrome User Agents for Linux
+```
+
+You also can generate User Agent string manually:
+
+```ruby
+Scruber::Helpers::UserAgentRotator.next([:desktop, :chrome])
+```
+
+Available tags:
+
+    Operation Systems
+      :windows
+      :macos
+      :linux
+      :android
+      :ios
+    Browsers
+      :chrome
+      :ie
+      :android_browser
+      :opera_mini
+      :firefox
+      :uc
+      :opera
+      :safari
+    Hardware
+      :pc
+      :mobile
+      :phone
+      :tablet
+
 
 ## Development
 
@@ -32,7 +80,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/scruber-user-agents.
+Bug reports and pull requests are welcome on GitHub at https://github.com/scruber/scruber-user-agents.
 
 ## License
 
