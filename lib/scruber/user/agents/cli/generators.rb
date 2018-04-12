@@ -13,11 +13,11 @@ module Scruber
         end
         
         def change_config
-          comment_lines '../../config/initializers/user_agents.rb', /add "/
+          comment_lines 'config/initializers/user_agents.rb', /add "/
 
-          uncomment_lines '../../config/initializers/user_agents.rb', /loop \:user_agents/
-          uncomment_lines '../../config/initializers/user_agents.rb', /add ua\['name'\]/
-          uncomment_lines '../../config/initializers/user_agents.rb', /end/
+          uncomment_lines 'config/initializers/user_agents.rb', /loop \:user_agents/
+          uncomment_lines 'config/initializers/user_agents.rb', /add ua\['name'\]/
+          uncomment_lines 'config/initializers/user_agents.rb', /end/
         end
       end
 
